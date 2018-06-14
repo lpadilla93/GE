@@ -16,10 +16,51 @@
   <link rel="stylesheet" href="css/app.css">
 
   <style type="text/css">
+  /* CSS MAPA */
     html { height: 100% }
     body { height: 100%; margin: 0; padding: 0 }
     #map-canvas { height: 100% }
     #map-canvas-ubicacion { height: 100% }
+
+  /*CSS CARDS NOTICIAS */
+      .demo-card-header-pic .card-header {
+        height: 40vw;
+        background-size: cover;
+        background-position: center;
+        color: #fff;
+      }
+      .demo-card-header-pic .card-content-padding .date{
+        color: #8e8e93;
+      }
+
+      .demo-swiper .swiper-slide {
+  font-size: 25px;
+  font-weight: 300;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #fff;
+  color: #000;
+}
+.demo-swiper .swiper-slide {
+  box-sizing: border-box;
+  border: 1px solid #ddd;
+  background: #fff;
+}
+.demo-swiper {
+  margin: 0px 0 35px;
+  font-size: 18px;
+  height: 120px;
+}
+.demo-swiper.demo-swiper-auto .swiper-slide {
+  width: 85%;
+}
+.demo-swiper.demo-swiper-auto .swiper-slide:nth-child(2n) {
+  width: 70%;
+}
+.demo-swiper.demo-swiper-auto .swiper-slide:nth-child(3n) {
+  width: 30%;
+}
   </style>
 </head>
 <body>
@@ -67,7 +108,7 @@
         </div>
       </div>
       <!-- Your main view/tab, should have "view-main" class. It also has "tab-active" class -->
-      <div id="view-home" class="view view-main tab tab-active">
+      <div id="view-home" class="view view-main tab tab-active ">
         <!-- Page, data-name contains page name which can be used in page callbacks -->
         <div class="page" data-name="home">
           <!-- Top Navbar -->
@@ -97,45 +138,60 @@
           </div>
 
           <!-- Scrollable page content-->
- <div class="page-content ptr-content" data-ptr-distance="55">
-             <div class="ptr-preloader">
-    <div class="preloader"></div>
-    <div class="ptr-arrow"></div>
+     <div class="page-content ptr-content " data-ptr-distance="55" >
+          <div class="ptr-preloader">
+              <div class="preloader"></div>
+              <div class="ptr-arrow"></div>
+            </div>
+            <div class="list media-list">
+            <!-- Cards-->
+             <div class="card demo-card-header-pic">
+                <div style="background-image:url(https://images.pexels.com/photos/257360/pexels-photo-257360.jpeg?auto=compress&cs=tinysrgb&h=350)" class="card-header align-items-flex-end">Journey To Mountains</div>
+                <div class="card-content card-content-padding">
+                  <p class="date">Publicado 14/06/2018</p>
+                  <p>Quisque eget vestibulum nulla. Quisque quis dui quis ex ultricies efficitur vitae non felis. Phasellus quis nibh hendrerit...</p>
+                </div>
+                <div class="card-footer"><a href="#" class="link">Leer más</a></div>
+              </div>
+          </div>
+           <div class="page-content">
+      <div class="block">
+        <!-- Open About Popup -->
+        <p><a class="link popup-open" href="#" data-popup=".popup-about">Open About Popup</a></p>
+        <!-- Open Services Popup -->
+        <p><a class="link popup-open" href="#" data-popup=".popup-services">Open Services Popup</a></p>
+        <p><a class="link dynamic-popup" href="#">Create Dynamic Popup</a></p>
+      </div>
+    </div>
+  
+  <div class="popup popup-about">
+<div class="page-content">
+    <div data-pagination='{"el": ".swiper-pagination", "hideOnClick": true}' class="swiper-container swiper-init demo-swiper">
+      <div class="swiper-pagination"></div>
+      <div class="swiper-wrapper">
+        <div class="swiper-slide">Slide 1</div>
+        <div class="swiper-slide">Slide 2</div>
+        <div class="swiper-slide">Slide 3</div>
+        <div class="swiper-slide">Slide 4</div>
+        <div class="swiper-slide">Slide 5</div>
+        <div class="swiper-slide">Slide 6</div>
+        <div class="swiper-slide">Slide 7</div>
+        <div class="swiper-slide">Slide 8</div>
+        <div class="swiper-slide">Slide 9</div>
+        <div class="swiper-slide">Slide 10</div>
+      </div>
+    </div>
   </div>
-  <div class="list media-list">
-    <ul>
-      <li class="item-content">
-        <div class="item-media"><img src="" width="44"/></div>
-        <div class="item-inner">
-          <div class="item-title-row">
-            <div class="item-title">Yellow Submarine</div>
-          </div>
-          <div class="item-subtitle">Beatles</div>
-        </div>
-      </li>
-      <li class="item-content">
-        <div class="item-media"><img src="" width="44"/></div>
-        <div class="item-inner">
-          <div class="item-title-row">
-            <div class="item-title">Don't Stop Me Now</div>
-          </div>
-          <div class="item-subtitle">Queen</div>
-        </div>
-      </li>
-      <li class="item-content">
-        <div class="item-media"><img src="" width="44"/></div>
-        <div class="item-inner">
-          <div class="item-title-row">
-            <div class="item-title">Billie Jean</div>
-          </div>
-          <div class="item-subtitle">Michael Jackson</div>
-        </div>
-      </li>
-    </ul>
+</div>
+
+
   </div>
 
-          </div>
-        </div>
+
+    </div>
+   </div>
+
+      </div>
       </div>
 
       <!-- Catalog View -->
@@ -222,6 +278,7 @@
         </div>
       </div>
     </div>
+
 
     <!-- Login Screen -->
     <div class="login-screen" id="my-login-screen">
