@@ -11,6 +11,10 @@ routes = [
     path: '/catalog/',
     componentUrl: './pages/catalog.html',
   },
+    {
+    path: '/noticias/',
+    componentUrl: './pages/noticias.html',
+  },
   {
     path: '/product/:id/',
     componentUrl: './pages/product.html',
