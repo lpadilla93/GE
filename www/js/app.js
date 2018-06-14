@@ -90,9 +90,7 @@ $ptrContent.on('ptr:refresh', function (e) {
     app.ptr.done(); // or e.detail();
 });
 //Fin Pull to refresh
-$$('.popup-about').on('popup:open', function (e, popup) {
-  console.log('About popup open');
-});
+
 // Login Screen Demo
 $$('#my-login-screen .login-button').on('click', function () {
   var username = $$('#my-login-screen [name="username"]').val();
