@@ -14,56 +14,13 @@
   <link rel="stylesheet" href="framework7/css/framework7.min.css">
   <link rel="stylesheet" href="css/icons.css">
   <link rel="stylesheet" href="css/app.css">
+  <link rel="stylesheet" href="css/introjs.css">
 
   <style type="text/css">
-  /* CSS MAPA */
-    html { height: 100% }
-    body { height: 100%; margin: 0; padding: 0 }
-    #map-canvas { height: 100% }
-    #map-canvas-ubicacion { height: 100% }
-
-  /*CSS CARDS NOTICIAS */
-      .demo-card-header-pic .card-header {
-        height: 40vw;
-        background-size: cover;
-        background-position: center;
-        color: #fff;
-      }
-      .demo-card-header-pic .card-content-padding .date{
-        color: #8e8e93;
-      }
-
-      .demo-swiper .swiper-slide {
-  font-size: 25px;
-  font-weight: 300;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background: #fff;
-  color: #000;
-}
-.demo-swiper .swiper-slide {
-  box-sizing: border-box;
-  border: 1px solid #ddd;
-  background: #fff;
-}
-.demo-swiper {
-  margin: 0px 0 35px;
-  font-size: 18px;
-  height: 100%;
-}
-.demo-swiper.demo-swiper-auto .swiper-slide {
-  width: 85%;
-}
-.demo-swiper.demo-swiper-auto .swiper-slide:nth-child(2n) {
-  width: 70%;
-}
-.demo-swiper.demo-swiper-auto .swiper-slide:nth-child(3n) {
-  width: 30%;
-}
+  
   </style>
 </head>
-<body>
+<body onload="javascript:introJs().setOption('showProgress', true).start();">
   <div id="app" >
     <!-- Status bar overlay for fullscreen mode-->
     <div class="statusbar"></div>
@@ -91,19 +48,24 @@
     <!-- Views/Tabs container -->
     <div class="views tabs ios-edges">
       <!-- Tabbar for switching views-tabs -->
-      <div class="toolbar tabbar toolbar-bottom-md " >
-        <div class="toolbar-inner">
-          <a href="#view-home" class="tab-link tab-link-active" style="overflow:visible">
-            <i class="icon material-icons md-only">storage</i>
+      <div class="toolbar tabbar toolbar-bottom-md" >
+        <div class="toolbar-inner" >
+          <a href="#view-home" class="tab-link tab-link-active" style="font-size:.5em" data-step="1" data-intro="Aqui podras revisar las ultimas noticias de EMAPA">
+            <i  class="icon material-icons md-only">feedback</i>
+            Noticias
           </a>
-          <a href="#view-contacto" class="tab-link" style="overflow:visible">
-            <i class="icon material-icons md-only">widgets</i>
+          <a href="#view-contacto" class="tab-link"  style="font-size:.5em" data-step="2" data-intro="Revisa los centros de pago que esten cerca de tu hogar">
+            <i class="icon material-icons md-only">explore</i>
+            Centros de Pago
+            <!--place-->
           </a>
-          <a href="#view-requisitos" class="tab-link">
-            <i class="icon material-icons md-only">functions</i>
+          <a href="#view-requisitos" class="tab-link" style="font-size:.5em" data-step="3" data-intro="Calcula el valor de consumo segun los parametros">
+            <i class="icon material-icons md-only">line_style</i>
+            Calculadora
           </a>
-          <a href="#view-catalog" class="tab-link" >
-            <i class="icon material-icons md-only">place</i>
+          <a href="#view-catalog" class="tab-link" style="font-size:.5em" data-step="4" data-intro="Ingresa aqui Emergencias">
+            <i class="icon material-icons md-only">report_problem</i>
+            Emergencias
           </a>
         </div>
       </div>
@@ -112,20 +74,20 @@
         <!-- Page, data-name contains page name which can be used in page callbacks -->
         <div class="page" data-name="home">
           <!-- Top Navbar -->
-          <div class="navbar">
-            <div class="navbar-inner">
+          <div class="navbar ">
+            <div class="navbar-inner sliding ">
               <div class="left">
-                <a href="#" class="link icon-only panel-open" data-panel="left">
+                <a href="#" class="link icon-only panel-open" data-panel="left" >
                   <i class="icon f7-icons ios-only">menu</i>
-                  <i class="icon material-icons md-only">menu</i>
+                  <i class="icon material-icons md-only" data-step="5" data-intro="Aqui puedes ver tus opciones">menu</i>
                 </a>
               </div>
-              <div class="title sliding right">
+              <div class="title right sliding">
                 <img src="img/e_logo2.png" width="44"/>
               </div>
               <div class="right">
                 <a href="#" class="link icon-only login-screen-open" data-login-screen="#my-login-screen">
-                  <i class="icon material-icons md-only">person_pin</i>
+                  <i class="icon material-icons md-only" data-step="6" data-intro="Para iniciar sesion selecciona aqui">person_pin</i>
                 </a>
               </div>
               <!--<div class="right">
@@ -169,7 +131,7 @@
     <div data-pagination='{"el": ".swiper-pagination", "hideOnClick": true}' class="swiper-container swiper-init demo-swiper">
       <div class="swiper-pagination"></div>
       <div class="swiper-wrapper">
-        <div class="swiper-slide">Slide 1</div>
+        <div class="swiper-slide">fsdf 1</div>
         <div class="swiper-slide">Slide 2</div>
         <div class="swiper-slide">Slide 3</div>
         <div class="swiper-slide">Slide 4</div>
@@ -328,6 +290,7 @@
 
   <!-- App routes -->
   <script src="js/routes.js"></script>
+  <script src="js/intro.js"></script>
   <!-- Your custom app scripts -->
   <script src="js/app.js"></script>
 
