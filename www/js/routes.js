@@ -12,6 +12,10 @@ routes = [
     url: './pages/swiper-3d-cube.html',
   },
   {
+    path: '/misrutas/',
+    url: './pages/misrutas.html',
+  },
+  {
     path: '/catalog/',
     componentUrl: './pages/catalog.html',
   },

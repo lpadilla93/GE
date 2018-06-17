@@ -1,49 +1,366 @@
 <!DOCTYPE html>
-<!--
-    Licensed to the Apache Software Foundation (ASF) under one
-    or more contributor license agreements.  See the NOTICE file
-    distributed with this work for additional information
-    regarding copyright ownership.  The ASF licenses this file
-    to you under the Apache License, Version 2.0 (the
-    "License"); you may not use this file except in compliance
-    with the License.  You may obtain a copy of the License at
-
-    http://www.apache.org/licenses/LICENSE-2.0
-
-    Unless required by applicable law or agreed to in writing,
-    software distributed under the License is distributed on an
-    "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
-     KIND, either express or implied.  See the License for the
-    specific language governing permissions and limitations
-    under the License.
--->
 <html>
-    <head>
-        <!--
-        Customize this policy to fit your own app's needs. For more guidance, see:
-            https://github.com/apache/cordova-plugin-whitelist/blob/master/README.md#content-security-policy
-        Some notes:
-            * gap: is required only on iOS (when using UIWebView) and is needed for JS->native communication
-            * https://ssl.gstatic.com is required only on Android and is needed for TalkBack to function properly
-            * Disables use of inline scripts in order to mitigate risk of XSS vulnerabilities. To change this:
-                * Enable inline JS: add 'unsafe-inline' to default-src
-        -->
-        <meta http-equiv="Content-Security-Policy" content="default-src 'self' data: gap: https://ssl.gstatic.com 'unsafe-eval'; style-src 'self' 'unsafe-inline'; media-src *; img-src 'self' data: content:;">
-        <meta name="format-detection" content="telephone=no">
-        <meta name="msapplication-tap-highlight" content="no">
-        <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width">
-        <link rel="stylesheet" type="text/css" href="css/index.css">
-        <title>Hello World</title>
-    </head>
-    <body>
-        <div class="app">
-            <h1>Apache Cordova</h1>
-            <div id="deviceready" class="blink">
-                <p class="event listening">Connecting to Device</p>
-                <p class="event received">Device is Ready</p>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="Content-Security-Policy" content="default-src * 'self' 'unsafe-inline' 'unsafe-eval' data: gap: content:">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui, viewport-fit=cover">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="default">
+  <meta name="theme-color" content="#2196f3">
+  <meta name="format-detection" content="telephone=no">
+  <meta name="msapplication-tap-highlight" content="no">
+  <title>EMAPA</title>
+
+  <link rel="stylesheet" href="framework7/css/framework7.min.css">
+  <link rel="stylesheet" href="css/icons.css">
+  <link rel="stylesheet" href="css/app.css">
+
+  <style type="text/css">
+  /* CSS MAPA */
+    html { height: 100% }
+    body { height: 100%; margin: 0; padding: 0 }
+    #map-canvas { height: 100% }
+    #map-canvas-ubicacion { height: 100% }
+
+  /*CSS CARDS NOTICIAS */
+      .demo-card-header-pic .card-header {
+        height: 40vw;
+        background-size: cover;
+        background-position: center;
+        color: #fff;
+      }
+      .demo-card-header-pic .card-content-padding .date{
+        color: #8e8e93;
+      }
+
+      .demo-swiper .swiper-slide {
+  font-size: 25px;
+  font-weight: 300;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #fff;
+  color: #000;
+}
+.demo-swiper .swiper-slide {
+  box-sizing: border-box;
+  border: 1px solid #ddd;
+  background: #fff;
+}
+.demo-swiper {
+  margin: 0px 0 35px;
+  font-size: 18px;
+  height: 100%;
+}
+.demo-swiper.demo-swiper-auto .swiper-slide {
+  width: 85%;
+}
+.demo-swiper.demo-swiper-auto .swiper-slide:nth-child(2n) {
+  width: 70%;
+}
+.demo-swiper.demo-swiper-auto .swiper-slide:nth-child(3n) {
+  width: 30%;
+}
+  </style>
+</head>
+<body>
+  <div id="app" >
+    <!-- Status bar overlay for fullscreen mode-->
+    <div class="statusbar"></div>
+    <!-- Left panel with cover effect-->
+    <div class="panel panel-left panel-cover theme-dark">
+      <div class="view">
+        <div class="page">
+          <div class="navbar">
+            <div class="navbar-inner">
+              <div class="title">Menú</div>
             </div>
+          </div>
+          <div class="page-content">
+            <div class="block">
+              <!--<p><a href="#view-settings" class="tab-link color-white">Puntos de Venta</a></p>-->
+              <p><a href="/about/" class="item-content item-link color-white">Acerca de</a></p>
+              <p><a class="link color-white" href="#" onclick="SalirSesion()">Salir</a></p>
+            </div>
+          </div>
         </div>
-        <script type="text/javascript" src="cordova.js"></script>
-        <script type="text/javascript" src="js/index.js"></script>
-    </body>
+      </div>
+    </div>
+    <!-- FIN Left panel with cover effect-->
+
+    <!-- Views/Tabs container -->
+    <div class="views tabs ios-edges">
+      <!-- Tabbar for switching views-tabs -->
+      <div class="toolbar tabbar toolbar-bottom-md " >
+        <div class="toolbar-inner">
+          <a href="#view-home" class="tab-link tab-link-active" style="overflow:visible">
+            <i class="icon material-icons md-only">storage</i>
+          </a>
+          <a href="#view-contacto" class="tab-link" style="overflow:visible">
+            <i class="icon material-icons md-only">widgets</i>
+          </a>
+          <a href="#view-requisitos" class="tab-link">
+            <i class="icon material-icons md-only">functions</i>
+          </a>
+          <a href="#view-catalog" class="tab-link" >
+            <i class="icon material-icons md-only">place</i>
+          </a>
+        </div>
+      </div>
+      <!-- Your main view/tab, should have "view-main" class. It also has "tab-active" class -->
+      <div id="view-home" class="view view-main tab tab-active ">
+        <!-- Page, data-name contains page name which can be used in page callbacks -->
+        <div class="page" data-name="home">
+          <!-- Top Navbar -->
+          <div class="navbar">
+            <div class="navbar-inner">
+              <div class="left">
+                <a href="#" class="link icon-only panel-open" data-panel="left">
+                  <i class="icon f7-icons ios-only">menu</i>
+                  <i class="icon material-icons md-only">menu</i>
+                </a>
+              </div>
+              <div class="title sliding right">
+                <img src="img/e_logo2.png" width="44"/>
+              </div>
+              <div class="right">
+                <a href="#" class="link icon-only login-screen-open" data-login-screen="#my-login-screen">
+                  <i class="icon material-icons md-only">person_pin</i>
+                </a>
+              </div>
+              <!--<div class="right">
+                <a href="#" class="login-screen-open color-white" data-login-screen="#my-login-screen">
+                  <i class="icon f7-icons ios-only">menu</i>
+                  <i class="icon material-icons md-only">menu</i>
+                </a>
+              </div>-->
+            </div>
+          </div>
+
+          <!-- Scrollable page content-->
+     <div class="page-content ptr-content " data-ptr-distance="55" >
+          <div class="ptr-preloader">
+              <div class="preloader"></div>
+              <div class="ptr-arrow"></div>
+            </div>
+            <div class="list media-list">
+            <!-- Cards-->
+     </div>
+    
+    </div>
+   </div>
+
+      </div>
+      </div>
+
+      <!-- Catalog View -->
+      <div id="view-catalog" class="view tab">
+        <!-- Catalog page will be loaded here dynamically from /catalog/ route -->
+      </div>
+
+      <!-- Settings View -->
+      <div id="view-settings" class="view tab">
+        <!-- Settings page will be loaded here dynamically from /settings/ route -->
+      </div>
+
+      <!-- Contactos View -->
+      <div id="view-contacto" class="view tab">
+        <div class="navbar">
+          <div class="navbar-inner sliding">
+            <div class="left">
+              <a href="#" class="link back">
+                <i class="icon icon-back"></i>
+                <span class="ios-only">Atras</span>
+              </a>
+            </div>
+            <div class="title">Requisitos</div>
+          </div>
+        </div>
+        <div class="page-content">
+            <form class="list" id="my-form">
+              <ul>
+                <li>
+                  <div class="item-content item-input">
+                    <div class="item-inner">
+                      <div class="item-title item-label">Genero</div>
+                      <div class="item-input-wrap">
+                        <select name="gender">
+                          <option value="male" selected>Femenino</option>
+                          <option value="female">Masculino</option>
+                        </select>
+                      </div>
+                    </div>
+                  </div>
+                </li>
+                <li>
+                  <div class="item-content item-input">
+                    <div class="item-inner">
+                      <div class="item-title item-label">Comentario</div>
+                      <div class="item-input-wrap">
+                        <textarea class="resizable" placeholder="Comentario"></textarea>
+                      </div>
+                    </div>
+                  </div>
+                </li>
+                <li><div class="col"><a class="button convert-form-to-data" href="#">Enviar</a></div></li>
+              </ul>
+            </form>
+
+          <div class="card">
+            <div class="card-header">Comunicate con Nosotros:</div>
+            <div class="card-content">
+              <div class="list media-list">
+                <ul>
+                  <li class="item-content">
+                    <div class="item-media"><img src="img/contactos/jorge_jarrin.jpg" width="44"/></div>
+                    <div class="item-inner">
+                      <div class="item-title-row">
+                        <div class="item-title">Jorge Jarrin - 06 3700 200 </div>
+                      </div>
+                      <div class="item-subtitle">Administrador de la Unidad del SISMERT</div>
+                    </div>
+                  </li>
+                  <li class="item-content">
+                    <div class="item-media"><img src="img/contactos/secre.jpg" width="44"/></div>
+                    <div class="item-inner">
+                      <div class="item-title-row">
+                        <div class="item-title">Patricia Díaz - 06 2950 512</div>
+                      </div>
+                      <div class="item-subtitle">Secretaria</div>
+                    </div>
+                  </li>
+                </ul>
+              </div>
+            </div>
+            <div class="card-footer"> <span>Calle García Moreno 6-31 entre Calle Simón Bolívar y Calle José Joaquín Olmedo</span><span></span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Login Screen -->
+    <div class="login-screen" id="my-login-screen">
+      <div class="view">
+        <div class="page">
+          <div class="page-content login-screen-content">
+            <div class="login-screen-title">Ingreso</div>
+            <div class="list">
+              <ul>
+                <li class="item-content item-input">
+                  <div class="item-inner">
+                    <!--<div class="item-title item-label">Nombre de Usuario</div>-->
+                    <div class="item-input-wrap">
+                      <input type="text" name="username" placeholder="Nombre de Usuario">
+                    </div>
+                  </div>
+                </li>
+                <li class="item-content item-input">
+                  <div class="item-inner">
+                    <!--<div class="item-title item-label">Contraseña</div>-->
+                    <div class="item-input-wrap">
+                      <input type="password" name="password" placeholder="Contraseña">
+                    </div>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="list">
+              <ul>
+                <li>
+                  <a href="#" class="item-link list-button login-button">Ingresar</a>
+                </li>
+              </ul>
+              <!--<div class="block-footer">Some text about login information.<br>Click "Sign In" to close Login Screen</div>-->
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Cordova -->
+  <!--
+  <script src="cordova.js"></script>
+  -->
+  <!-- Framework7 -->
+  <script src="framework7/js/framework7.min.js"></script>
+  <!-- App Rutas -->
+  <script src="js/routes.js"></script>
+  <!-- Mis scripts -->
+  <script src="js/jquery-3.3.1.min.js"></script>
+  <script src="js/app.js"></script>
+  <script src="js/Emapai_noticias.js"></script>
+  <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCoDepzE6bgsyzw_GCZ9PK_AihnAopmOBg"></script>
+
+  <script type="text/javascript">
+    navigator.geolocation.getCurrentPosition(onSuccess, onError, { timeout: 30000 });
+      function onSuccess(position) {
+      var lat=position.coords.latitude;
+      var lang=position.coords.longitude;
+     // var ced;
+      //var conf=1;
+      //Asignar valores a los txt
+//      document.getElementById('coorx').value = lat;
+   //   document.getElementById('coory').value = lang;
+      //Google Maps
+
+      var marcadores = [
+        ['Punto1', 0.351641, -78.116546],
+        ['Punto2', 0.349195, -78.118713],
+        ['Punto3', 0.347124, -78.119936]
+      ];
+
+      var infowindow = new google.maps.InfoWindow();
+
+      var myLatlng = new google.maps.LatLng(lat=0.3516264,lang=-78.1187658);
+      var mapOptions = {zoom: 15,center: myLatlng};
+      
+      var map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
+
+         var marker, i;
+          for (i = 0; i < marcadores.length; i++) {  
+            marker = new google.maps.Marker({
+              position: new google.maps.LatLng(marcadores[i][1], marcadores[i][2]),
+              map: map
+            });
+            google.maps.event.addListener(marker, 'click', (function(marker, i) {
+              return function() {
+                infowindow.setContent(marcadores[i][0]);
+                infowindow.open(map, marker);
+              }
+            })(marker, i));
+          }
+
+      var mapOptionsUb = {zoom: 18,center: myLatlng};
+      var mapUb = new google.maps.Map(document.getElementById('map-canvas-ubicacion'), mapOptionsUb);
+      var markerUb = new google.maps.Marker({
+          position: myLatlng,map: mapUb
+        });
+      var contentString = '<div tyle="top: 9px; position: absolute; left: 15px; width: 203px;" class="gm-style-iw">'+
+        '<div style="display: inline-block; overflow: auto;">'+
+          '<div><b>Ilustre Municipio de San Miguel de Ibarra</b></div>'+
+          '<div>García Moreno y Simon Bolívar Esquina</div>'+
+          '<div>Calle García Moreno 6-31</div>'+
+          '<div>Ibarra</div>'+
+          '<div>Ecuador</div>'+          
+          '</div>'+
+        '</div>';
+
+        var infowindow = new google.maps.InfoWindow({
+          content: contentString
+        });
+
+        markerUb.addListener('click', function() {
+          infowindow.open(mapUb, markerUb);
+        });
+
+
+      }
+
+      function onError(error) {
+      alert('code: ' + error.code + '\n' +
+      'message: ' + error.message + '\n');
+    }
+
+  </script>
+</body>
 </html>

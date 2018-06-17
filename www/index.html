@@ -80,6 +80,7 @@
             <div class="block">
               <!--<p><a href="#view-settings" class="tab-link color-white">Puntos de Venta</a></p>-->
               <p><a href="/about/" class="item-content item-link color-white">Acerca de</a></p>
+                 <p><a href="/misrutas/" class="item-content item-link color-white" onclick="LeerCoordenadas()">Mis Rutas</a></p>
               <p><a class="link color-white" href="#" onclick="SalirSesion()">Salir</a></p>
             </div>
           </div>
@@ -145,49 +146,8 @@
             </div>
             <div class="list media-list">
             <!-- Cards-->
-             <div class="card demo-card-header-pic">
-                <div style="background-image:url(https://images.pexels.com/photos/257360/pexels-photo-257360.jpeg?auto=compress&cs=tinysrgb&h=350)" class="card-header align-items-flex-end">Journey To Mountains</div>
-                <div class="card-content card-content-padding">
-                  <p class="date">Publicado 14/06/2018</p>
-                  <p>Quisque eget vestibulum nulla. Quisque quis dui quis ex ultricies efficitur vitae non felis. Phasellus quis nibh hendrerit...</p>
-                </div>
-                <div class="card-footer"><a href="#" class="link">Leer más</a></div>
-              </div>
-          </div>
-           <div class="page-content">
-      <div class="block">
-        <!-- Open About Popup -->
-          <a href="swiper-horizontal/">Swiper Horizontal</a>
-        <!-- Open Services Popup -->
-        <p><a class="link popup-open" href="#" data-popup=".popup-services">Open Services Popup</a></p>
-        <p><a class="link dynamic-popup" href="#">Create Dynamic Popup</a></p>
-      </div>
-    </div>
-  
-  <div class="popup popup-about">
-<div class="page-content">
-    <div data-pagination='{"el": ".swiper-pagination", "hideOnClick": true}' class="swiper-container swiper-init demo-swiper">
-      <div class="swiper-pagination"></div>
-      <div class="swiper-wrapper">
-        <div class="swiper-slide">Slide 1</div>
-        <div class="swiper-slide">Slide 2</div>
-        <div class="swiper-slide">Slide 3</div>
-        <div class="swiper-slide">Slide 4</div>
-        <div class="swiper-slide">Slide 5</div>
-        <div class="swiper-slide">Slide 6</div>
-        <div class="swiper-slide">Slide 7</div>
-        <div class="swiper-slide">Slide 8</div>
-        <div class="swiper-slide">Slide 9</div>
-        <div class="swiper-slide">Slide 10</div>
-      </div>
-    </div>
-  </div>
-</div>
-
-
-  </div>
-
-
+     </div>
+    
     </div>
    </div>
 
@@ -279,7 +239,6 @@
       </div>
     </div>
 
-
     <!-- Login Screen -->
     <div class="login-screen" id="my-login-screen">
       <div class="view">
@@ -323,86 +282,15 @@
   <!--
   <script src="cordova.js"></script>
   -->
-  <!-- Framework7 library -->
+  <!-- Framework7 -->
   <script src="framework7/js/framework7.min.js"></script>
-
-  <!-- App routes -->
+  <!-- App Rutas -->
   <script src="js/routes.js"></script>
-  <!-- Your custom app scripts -->
-  <script src="js/app.js"></script>
-
+  <!-- Mis scripts -->
+  <script src="js/jquery-3.3.1.min.js"></script>
   <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCoDepzE6bgsyzw_GCZ9PK_AihnAopmOBg"></script>
-
-  <script type="text/javascript">
-    navigator.geolocation.getCurrentPosition(onSuccess, onError, { timeout: 30000 });
-      function onSuccess(position) {
-      var lat=position.coords.latitude;
-      var lang=position.coords.longitude;
-     // var ced;
-      //var conf=1;
-      //Asignar valores a los txt
-//      document.getElementById('coorx').value = lat;
-   //   document.getElementById('coory').value = lang;
-      //Google Maps
-
-      var marcadores = [
-        ['Punto1', 0.351641, -78.116546],
-        ['Punto2', 0.349195, -78.118713],
-        ['Punto3', 0.347124, -78.119936]
-      ];
-
-      var infowindow = new google.maps.InfoWindow();
-
-      var myLatlng = new google.maps.LatLng(lat=0.3516264,lang=-78.1187658);
-      var mapOptions = {zoom: 15,center: myLatlng};
-      
-      var map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
-
-         var marker, i;
-          for (i = 0; i < marcadores.length; i++) {  
-            marker = new google.maps.Marker({
-              position: new google.maps.LatLng(marcadores[i][1], marcadores[i][2]),
-              map: map
-            });
-            google.maps.event.addListener(marker, 'click', (function(marker, i) {
-              return function() {
-                infowindow.setContent(marcadores[i][0]);
-                infowindow.open(map, marker);
-              }
-            })(marker, i));
-          }
-
-      var mapOptionsUb = {zoom: 18,center: myLatlng};
-      var mapUb = new google.maps.Map(document.getElementById('map-canvas-ubicacion'), mapOptionsUb);
-      var markerUb = new google.maps.Marker({
-          position: myLatlng,map: mapUb
-        });
-      var contentString = '<div tyle="top: 9px; position: absolute; left: 15px; width: 203px;" class="gm-style-iw">'+
-        '<div style="display: inline-block; overflow: auto;">'+
-          '<div><b>Ilustre Municipio de San Miguel de Ibarra</b></div>'+
-          '<div>García Moreno y Simon Bolívar Esquina</div>'+
-          '<div>Calle García Moreno 6-31</div>'+
-          '<div>Ibarra</div>'+
-          '<div>Ecuador</div>'+          
-          '</div>'+
-        '</div>';
-
-        var infowindow = new google.maps.InfoWindow({
-          content: contentString
-        });
-
-        markerUb.addListener('click', function() {
-          infowindow.open(mapUb, markerUb);
-        });
-
-
-      }
-
-      function onError(error) {
-      alert('code: ' + error.code + '\n' +
-      'message: ' + error.message + '\n');
-    }
-
-  </script>
+  <script src="js/app.js"></script>
+  <script src="js/Emapai_noticias.js"></script>
+  <script src="js/Emapai_misrutas.js"></script>
 </body>
 </html>
