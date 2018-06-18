@@ -25,7 +25,7 @@ function CargarNoticias(){
          console.log( "La solicitud se ha completado correctamente." +data);
          var itemHTML="";
              for(var i=0 in data.datosNoticias) {
-               itemHTML+='<div class="card demo-card-header-pic">'+
+               itemHTML ='<div class="card demo-card-header-pic">'+
                 '<div style="background-image:url('+data.datosNoticias[i].FOTO+')" class="card-header align-items-flex-end">'+data.datosNoticias[i].TITULAR+'</div>'+
                 '<div class="card-content card-content-padding">'+
                 '<p class="date">Publicado '+data.datosNoticias[i].FECHA+'</p>'+
@@ -33,7 +33,7 @@ function CargarNoticias(){
                 '</div>'+
                 '<div class="card-footer"><a href="#" class="link">Leer más</a></div>'+
                 '</div>'+
-                '</div>';
+                '</div>'+itemHTML;
    
         }
               $ptrContent.find('.list').prepend(itemHTML);

@@ -16,6 +16,10 @@ routes = [
     url: './pages/misrutas.html',
   },
   {
+    path: '/insertarlecturas/',
+    url: './pages/insertarlecturas.html',
+  },
+  {
     path: '/catalog/',
     componentUrl: './pages/catalog.html',
   },

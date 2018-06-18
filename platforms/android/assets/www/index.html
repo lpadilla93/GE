@@ -2,7 +2,7 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <meta http-equiv="Content-Security-Policy" content="default-src * 'self' 'unsafe-inline' 'unsafe-eval' data: gap: content:">
+
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui, viewport-fit=cover">
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="default">
@@ -80,6 +80,8 @@
             <div class="block">
               <!--<p><a href="#view-settings" class="tab-link color-white">Puntos de Venta</a></p>-->
               <p><a href="/about/" class="item-content item-link color-white">Acerca de</a></p>
+              <p><a href="/misrutas/" class="item-content item-link color-white" onclick="LeerCoordenadas()">Mis Rutas</a></p>
+              <p><a href="/insertarlecturas/" class="item-content item-link color-white">Insertar Lecturas</a></p>
               <p><a class="link color-white" href="#" onclick="SalirSesion()">Salir</a></p>
             </div>
           </div>
@@ -286,81 +288,16 @@
   <!-- App Rutas -->
   <script src="js/routes.js"></script>
   <!-- Mis scripts -->
+
+  <script src="cordova.js"></script>
   <script src="js/jquery-3.3.1.min.js"></script>
+
+  <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCoDepzE6bgsyzw_GCZ9PK_AihnAopmOBg"></script>
   <script src="js/app.js"></script>
   <script src="js/Emapai_noticias.js"></script>
-  <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCoDepzE6bgsyzw_GCZ9PK_AihnAopmOBg"></script>
-
-  <script type="text/javascript">
-    navigator.geolocation.getCurrentPosition(onSuccess, onError, { timeout: 30000 });
-      function onSuccess(position) {
-      var lat=position.coords.latitude;
-      var lang=position.coords.longitude;
-     // var ced;
-      //var conf=1;
-      //Asignar valores a los txt
-//      document.getElementById('coorx').value = lat;
-   //   document.getElementById('coory').value = lang;
-      //Google Maps
-
-      var marcadores = [
-        ['Punto1', 0.351641, -78.116546],
-        ['Punto2', 0.349195, -78.118713],
-        ['Punto3', 0.347124, -78.119936]
-      ];
-
-      var infowindow = new google.maps.InfoWindow();
-
-      var myLatlng = new google.maps.LatLng(lat=0.3516264,lang=-78.1187658);
-      var mapOptions = {zoom: 15,center: myLatlng};
-      
-      var map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
-
-         var marker, i;
-          for (i = 0; i < marcadores.length; i++) {  
-            marker = new google.maps.Marker({
-              position: new google.maps.LatLng(marcadores[i][1], marcadores[i][2]),
-              map: map
-            });
-            google.maps.event.addListener(marker, 'click', (function(marker, i) {
-              return function() {
-                infowindow.setContent(marcadores[i][0]);
-                infowindow.open(map, marker);
-              }
-            })(marker, i));
-          }
-
-      var mapOptionsUb = {zoom: 18,center: myLatlng};
-      var mapUb = new google.maps.Map(document.getElementById('map-canvas-ubicacion'), mapOptionsUb);
-      var markerUb = new google.maps.Marker({
-          position: myLatlng,map: mapUb
-        });
-      var contentString = '<div tyle="top: 9px; position: absolute; left: 15px; width: 203px;" class="gm-style-iw">'+
-        '<div style="display: inline-block; overflow: auto;">'+
-          '<div><b>Ilustre Municipio de San Miguel de Ibarra</b></div>'+
-          '<div>García Moreno y Simon Bolívar Esquina</div>'+
-          '<div>Calle García Moreno 6-31</div>'+
-          '<div>Ibarra</div>'+
-          '<div>Ecuador</div>'+          
-          '</div>'+
-        '</div>';
-
-        var infowindow = new google.maps.InfoWindow({
-          content: contentString
-        });
-
-        markerUb.addListener('click', function() {
-          infowindow.open(mapUb, markerUb);
-        });
-
-
-      }
-
-      function onError(error) {
-      alert('code: ' + error.code + '\n' +
-      'message: ' + error.message + '\n');
-    }
-
-  </script>
+  <script src="js/Emapai_noticias.js"></script>
+  <script src="js/Emapai_misrutas.js"></script>
+  <script src='js/tesseract.js'></script>
+  <script src="js/Emapai_lecturas.js"></script>
 </body>
 </html>

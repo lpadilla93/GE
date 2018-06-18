@@ -9,6 +9,12 @@
   "installed_plugins": {
     "cordova-plugin-whitelist": {
       "PACKAGE_NAME": "com.geotactics.emapai"
+    },
+    "cordova-plugin-camera": {
+      "PACKAGE_NAME": "com.geotactics.emapai"
+    },
+    "cordova-plugin-geolocation": {
+      "PACKAGE_NAME": "com.geotactics.emapai"
     }
   },
   "dependent_plugins": {}
