@@ -64,6 +64,32 @@ var settingsView = app.views.create('#view-settings', {
   url: '/settings/'
 });
 
+//Contenido Pull to refresh
+
+var $ptrContent = $$('.ptr-content');
+var songs = ['Yellow Submarine', 'Don\'t Stop Me Now', 'Billie Jean', 'Californication'];
+var authors = ['Beatles', 'Queen', 'Michael Jackson', 'Red Hot Chili Peppers'];
+$ptrContent.on('ptr:refresh', function (e) {
+  // Emulate 2s loading
+
+    var picURL = 'http://lorempixel.com/88/88/abstract/' + Math.round(Math.random() * 10);
+    var song = songs[Math.floor(Math.random() * songs.length)];
+    var author = authors[Math.floor(Math.random() * authors.length)];
+    var itemHTML =
+       '<div class="card demo-card-header-pic">'+
+                '<div style="background-image:url(https://images.pexels.com/photos/257360/pexels-photo-257360.jpeg?auto=compress&cs=tinysrgb&h=350)" class="card-header align-items-flex-end">Journey To Mountains</div>'+
+                '<div class="card-content card-content-padding">'+
+                '<p class="date">'+'Publicado 14/06/2018'+'</p>'+
+                '<p>Quisque eget vestibulum nulla. Quisque quis dui quis ex ultricies efficitur vitae non felis. Phasellus quis nibh hendrerit...</p>'+
+                '</div>'+
+               '<div class="card-footer"><a href="#" class="link">Leer más</a></div>'+
+              '</div>';
+    // Prepend new list element
+    $ptrContent.find('.list').prepend(itemHTML);
+    // When loading done, we need to reset it
+    app.ptr.done(); // or e.detail();
+});
+//Fin Pull to refresh
 
 // Login Screen Demo
 $$('#my-login-screen .login-button').on('click', function () {

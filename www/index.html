@@ -14,56 +14,13 @@
   <link rel="stylesheet" href="framework7/css/framework7.min.css">
   <link rel="stylesheet" href="css/icons.css">
   <link rel="stylesheet" href="css/app.css">
+  <link rel="stylesheet" href="css/introjs.css">
 
   <style type="text/css">
-  /* CSS MAPA */
-    html { height: 100% }
-    body { height: 100%; margin: 0; padding: 0 }
-    #map-canvas { height: 100% }
-    #map-canvas-ubicacion { height: 100% }
-
-  /*CSS CARDS NOTICIAS */
-      .demo-card-header-pic .card-header {
-        height: 40vw;
-        background-size: cover;
-        background-position: center;
-        color: #fff;
-      }
-      .demo-card-header-pic .card-content-padding .date{
-        color: #8e8e93;
-      }
-
-      .demo-swiper .swiper-slide {
-  font-size: 25px;
-  font-weight: 300;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background: #fff;
-  color: #000;
-}
-.demo-swiper .swiper-slide {
-  box-sizing: border-box;
-  border: 1px solid #ddd;
-  background: #fff;
-}
-.demo-swiper {
-  margin: 0px 0 35px;
-  font-size: 18px;
-  height: 100%;
-}
-.demo-swiper.demo-swiper-auto .swiper-slide {
-  width: 85%;
-}
-.demo-swiper.demo-swiper-auto .swiper-slide:nth-child(2n) {
-  width: 70%;
-}
-.demo-swiper.demo-swiper-auto .swiper-slide:nth-child(3n) {
-  width: 30%;
-}
+  
   </style>
 </head>
-<body>
+<body onload="javascript:introJs().setOption('showProgress', true).start();">
   <div id="app" >
     <!-- Status bar overlay for fullscreen mode-->
     <div class="statusbar"></div>
@@ -80,8 +37,8 @@
             <div class="block">
               <!--<p><a href="#view-settings" class="tab-link color-white">Puntos de Venta</a></p>-->
               <p><a href="/about/" class="item-content item-link color-white">Acerca de</a></p>
-              <p><a href="/misrutas/" class="item-content item-link color-white" onclick="LeerCoordenadas()">Mis Rutas</a></p>
               <p><a href="/insertarlecturas/" class="item-content item-link color-white">Insertar Lecturas</a></p>
+              <p><a href="/misrutas/" class="item-content item-link color-white" onclick="LeerCoordenadas()" >Mis Rutas</a>
               <p><a class="link color-white" href="#" onclick="SalirSesion()">Salir</a></p>
             </div>
           </div>
@@ -93,19 +50,24 @@
     <!-- Views/Tabs container -->
     <div class="views tabs ios-edges">
       <!-- Tabbar for switching views-tabs -->
-      <div class="toolbar tabbar toolbar-bottom-md " >
-        <div class="toolbar-inner">
-          <a href="#view-home" class="tab-link tab-link-active" style="overflow:visible">
-            <i class="icon material-icons md-only">storage</i>
+      <div class="toolbar tabbar toolbar-bottom-md" >
+        <div class="toolbar-inner" >
+          <a href="#view-home" class="tab-link tab-link-active" style="font-size:.5em" data-step="1" data-intro="Aqui podras revisar las ultimas noticias de EMAPA">
+            <i  class="icon material-icons md-only">feedback</i>
+            Noticias
           </a>
-          <a href="#view-contacto" class="tab-link" style="overflow:visible">
-            <i class="icon material-icons md-only">widgets</i>
+          <a href="#view-contacto" class="tab-link"  style="font-size:.5em" data-step="2" data-intro="Revisa los centros de pago que esten cerca de tu hogar">
+            <i class="icon material-icons md-only">explore</i>
+            Centros de Pago
+            <!--place-->
           </a>
-          <a href="#view-requisitos" class="tab-link">
-            <i class="icon material-icons md-only">functions</i>
+          <a href="#view-requisitos" class="tab-link" style="font-size:.5em" data-step="3" data-intro="Calcula el valor de consumo segun los parametros">
+            <i class="icon material-icons md-only">line_style</i>
+            Calculadora
           </a>
-          <a href="#view-catalog" class="tab-link" >
-            <i class="icon material-icons md-only">place</i>
+          <a href="#view-catalog" class="tab-link" style="font-size:.5em" data-step="4" data-intro="Ingresa aqui Emergencias">
+            <i class="icon material-icons md-only">report_problem</i>
+            Emergencias
           </a>
         </div>
       </div>
@@ -114,20 +76,20 @@
         <!-- Page, data-name contains page name which can be used in page callbacks -->
         <div class="page" data-name="home">
           <!-- Top Navbar -->
-          <div class="navbar">
-            <div class="navbar-inner">
+          <div class="navbar ">
+            <div class="navbar-inner sliding ">
               <div class="left">
-                <a href="#" class="link icon-only panel-open" data-panel="left">
+                <a href="#" class="link icon-only panel-open" data-panel="left" >
                   <i class="icon f7-icons ios-only">menu</i>
-                  <i class="icon material-icons md-only">menu</i>
+                  <i class="icon material-icons md-only" data-step="5" data-intro="Aqui puedes ver tus opciones">menu</i>
                 </a>
               </div>
-              <div class="title sliding right">
+              <div class="title right sliding">
                 <img src="img/e_logo2.png" width="44"/>
               </div>
               <div class="right">
                 <a href="#" class="link icon-only login-screen-open" data-login-screen="#my-login-screen">
-                  <i class="icon material-icons md-only">person_pin</i>
+                  <i class="icon material-icons md-only" data-step="6" data-intro="Para iniciar sesion selecciona aqui">person_pin</i>
                 </a>
               </div>
               <!--<div class="right">
@@ -147,8 +109,28 @@
             </div>
             <div class="list media-list">
             <!-- Cards-->
-     </div>
-    
+             <div class="card demo-card-header-pic">
+                <div style="background-image:url(https://images.pexels.com/photos/257360/pexels-photo-257360.jpeg?auto=compress&cs=tinysrgb&h=350)" class="card-header align-items-flex-end">Journey To Mountains</div>
+                <div class="card-content card-content-padding">
+                  <p class="date">Publicado 14/06/2018</p>
+                  <p>Quisque eget vestibulum nulla. Quisque quis dui quis ex ultricies efficitur vitae non felis. Phasellus quis nibh hendrerit...</p>
+                </div>
+                <div class="card-footer"><a href="#" class="link">Leer más</a></div>
+              </div>
+          </div>
+           <div class="page-content">
+      <div class="block">
+        <!-- Open About Popup -->
+          <a href="swiper-horizontal/">Swiper Horizontal</a>
+        <!-- Open Services Popup -->
+        <p><a class="link popup-open" href="#" data-popup=".popup-services">Open Services Popup</a></p>
+        <p><a class="link dynamic-popup" href="#">Create Dynamic Popup</a></p>
+      </div>
+    </div>
+
+  </div>
+
+
     </div>
    </div>
 
@@ -167,113 +149,31 @@
 
       <!-- Contactos View -->
       <div id="view-contacto" class="view tab">
-        <div class="navbar">
-          <div class="navbar-inner sliding">
-            <div class="left">
-              <a href="#" class="link back">
-                <i class="icon icon-back"></i>
-                <span class="ios-only">Atras</span>
-              </a>
-            </div>
-            <div class="title">Requisitos</div>
-          </div>
-        </div>
-        <div class="page-content">
-            <form class="list" id="my-form">
-              <ul>
-                <li>
-                  <div class="item-content item-input">
-                    <div class="item-inner">
-                      <div class="item-title item-label">Genero</div>
-                      <div class="item-input-wrap">
-                        <select name="gender">
-                          <option value="male" selected>Femenino</option>
-                          <option value="female">Masculino</option>
-                        </select>
-                      </div>
-                    </div>
-                  </div>
-                </li>
-                <li>
-                  <div class="item-content item-input">
-                    <div class="item-inner">
-                      <div class="item-title item-label">Comentario</div>
-                      <div class="item-input-wrap">
-                        <textarea class="resizable" placeholder="Comentario"></textarea>
-                      </div>
-                    </div>
-                  </div>
-                </li>
-                <li><div class="col"><a class="button convert-form-to-data" href="#">Enviar</a></div></li>
-              </ul>
-            </form>
-
-          <div class="card">
-            <div class="card-header">Comunicate con Nosotros:</div>
-            <div class="card-content">
-              <div class="list media-list">
-                <ul>
-                  <li class="item-content">
-                    <div class="item-media"><img src="img/contactos/jorge_jarrin.jpg" width="44"/></div>
-                    <div class="item-inner">
-                      <div class="item-title-row">
-                        <div class="item-title">Jorge Jarrin - 06 3700 200 </div>
-                      </div>
-                      <div class="item-subtitle">Administrador de la Unidad del SISMERT</div>
-                    </div>
-                  </li>
-                  <li class="item-content">
-                    <div class="item-media"><img src="img/contactos/secre.jpg" width="44"/></div>
-                    <div class="item-inner">
-                      <div class="item-title-row">
-                        <div class="item-title">Patricia Díaz - 06 2950 512</div>
-                      </div>
-                      <div class="item-subtitle">Secretaria</div>
-                    </div>
-                  </li>
-                </ul>
-              </div>
-            </div>
-            <div class="card-footer"> <span>Calle García Moreno 6-31 entre Calle Simón Bolívar y Calle José Joaquín Olmedo</span><span></span></div>
-          </div>
-        </div>
+ 
       </div>
     </div>
+
 
     <!-- Login Screen -->
     <div class="login-screen" id="my-login-screen">
       <div class="view">
         <div class="page">
           <div class="page-content login-screen-content">
-            <div class="login-screen-title">Ingreso</div>
-            <div class="list">
-              <ul>
-                <li class="item-content item-input">
-                  <div class="item-inner">
-                    <!--<div class="item-title item-label">Nombre de Usuario</div>-->
-                    <div class="item-input-wrap">
-                      <input type="text" name="username" placeholder="Nombre de Usuario">
-                    </div>
-                  </div>
-                </li>
-                <li class="item-content item-input">
-                  <div class="item-inner">
-                    <!--<div class="item-title item-label">Contraseña</div>-->
-                    <div class="item-input-wrap">
-                      <input type="password" name="password" placeholder="Contraseña">
-                    </div>
-                  </div>
-                </li>
-              </ul>
-            </div>
-            <div class="list">
-              <ul>
-                <li>
-                  <a href="#" class="item-link list-button login-button">Ingresar</a>
-                </li>
-              </ul>
-              <!--<div class="block-footer">Some text about login information.<br>Click "Sign In" to close Login Screen</div>-->
-            </div>
+            <div class="login-screen-title padding-top"><img src="img/logo.png" width="40%"></div>
+            <div class="block">
+              <p class="row">
+                <a href="/inicio_usuario/" class="col button button-big button-fill" style="font-size:.7em" >
+                  <i class="icon material-icons md-only">verified_user</i>Ingreso por Usuario y Contraseña
+                </a>
+              </p>
+              <p class="row">
+                <button class="col button button-big button-fill" style="font-size:.7em"><i class="icon material-icons md-only">fingerprint</i>Ingreso por Scanner</button>
+              </p>
+            </div> 
+
+            <p class="text-align-right padding-right text-color-blue" onclick="cerrarLogin('my-login-screen')"><a href="">Cerrar</a></p>
+            
+            <div class="login-screen-title"><img src="img/ibarra_logo.png" width="20%"></div>
           </div>
         </div>
       </div>
@@ -283,18 +183,23 @@
   <!--
   <script src="cordova.js"></script>
   -->
-  <!-- Framework7 -->
+  <!-- Framework7 library -->
   <script src="framework7/js/framework7.min.js"></script>
   <!-- App Rutas -->
   <script src="js/routes.js"></script>
   <!-- Mis scripts -->
 
   <script src="cordova.js"></script>
+
   <script src="js/jquery-3.3.1.min.js"></script>
 
   <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCoDepzE6bgsyzw_GCZ9PK_AihnAopmOBg"></script>
+
+  <!-- App routes -->
+  <script src="js/routes.js"></script>
+  <script src="js/intro.js"></script>
+  <!-- Your custom app scripts -->
   <script src="js/app.js"></script>
-  <script src="js/Emapai_noticias.js"></script>
   <script src="js/Emapai_noticias.js"></script>
   <script src="js/Emapai_misrutas.js"></script>
   <script src='js/tesseract.js'></script>

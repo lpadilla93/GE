@@ -1,6 +1,7 @@
 cordova.define('cordova/plugin_list', function(require, exports, module) {
 module.exports = [
   {
+<<<<<<< HEAD
     "id": "cordova-plugin-camera.Camera",
     "file": "plugins/cordova-plugin-camera/www/CameraConstants.js",
     "pluginId": "cordova-plugin-camera",
@@ -45,14 +46,26 @@ module.exports = [
     "file": "plugins/cordova-plugin-geolocation/www/PositionError.js",
     "pluginId": "cordova-plugin-geolocation",
     "runs": true
+=======
+    "id": "cordova-plugin-splashscreen.SplashScreen",
+    "file": "plugins/cordova-plugin-splashscreen/www/splashscreen.js",
+    "pluginId": "cordova-plugin-splashscreen",
+    "clobbers": [
+      "navigator.splashscreen"
+    ]
+>>>>>>> e4d5103b580fc436214a70831fcdd631e366a3be
   }
 ];
 module.exports.metadata = 
 // TOP OF METADATA
 {
   "cordova-plugin-whitelist": "1.3.3",
+<<<<<<< HEAD
   "cordova-plugin-camera": "4.0.3",
   "cordova-plugin-geolocation": "4.0.1"
+=======
+  "cordova-plugin-splashscreen": "5.0.2"
+>>>>>>> e4d5103b580fc436214a70831fcdd631e366a3be
 };
 // BOTTOM OF METADATA
 });

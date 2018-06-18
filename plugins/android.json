@@ -10,10 +10,14 @@
     "cordova-plugin-whitelist": {
       "PACKAGE_NAME": "com.geotactics.emapai"
     },
+<<<<<<< HEAD
     "cordova-plugin-camera": {
       "PACKAGE_NAME": "com.geotactics.emapai"
     },
     "cordova-plugin-geolocation": {
+=======
+    "cordova-plugin-splashscreen": {
+>>>>>>> e4d5103b580fc436214a70831fcdd631e366a3be
       "PACKAGE_NAME": "com.geotactics.emapai"
     }
   },

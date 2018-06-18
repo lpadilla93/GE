@@ -13,6 +13,7 @@
               "count": 1
             },
             {
+<<<<<<< HEAD
               "xml": "<feature name=\"Camera\"><param name=\"android-package\" value=\"org.apache.cordova.camera.CameraLauncher\" /></feature>",
               "count": 1
             },
@@ -46,6 +47,9 @@
           "application": [
             {
               "xml": "<provider android:authorities=\"${applicationId}.provider\" android:exported=\"false\" android:grantUriPermissions=\"true\" android:name=\"org.apache.cordova.camera.FileProvider\"><meta-data android:name=\"android.support.FILE_PROVIDER_PATHS\" android:resource=\"@xml/camera_provider_paths\" /></provider>",
+=======
+              "xml": "<feature name=\"SplashScreen\"><param name=\"android-package\" value=\"org.apache.cordova.splashscreen.SplashScreen\" /><param name=\"onload\" value=\"true\" /></feature>",
+>>>>>>> e4d5103b580fc436214a70831fcdd631e366a3be
               "count": 1
             }
           ]
@@ -57,16 +61,21 @@
     "cordova-plugin-whitelist": {
       "PACKAGE_NAME": "com.geotactics.emapai"
     },
+<<<<<<< HEAD
     "cordova-plugin-camera": {
       "PACKAGE_NAME": "com.geotactics.emapai"
     },
     "cordova-plugin-geolocation": {
+=======
+    "cordova-plugin-splashscreen": {
+>>>>>>> e4d5103b580fc436214a70831fcdd631e366a3be
       "PACKAGE_NAME": "com.geotactics.emapai"
     }
   },
   "dependent_plugins": {},
   "modules": [
     {
+<<<<<<< HEAD
       "id": "cordova-plugin-camera.Camera",
       "file": "plugins/cordova-plugin-camera/www/CameraConstants.js",
       "pluginId": "cordova-plugin-camera",
@@ -111,11 +120,23 @@
       "file": "plugins/cordova-plugin-geolocation/www/PositionError.js",
       "pluginId": "cordova-plugin-geolocation",
       "runs": true
+=======
+      "id": "cordova-plugin-splashscreen.SplashScreen",
+      "file": "plugins/cordova-plugin-splashscreen/www/splashscreen.js",
+      "pluginId": "cordova-plugin-splashscreen",
+      "clobbers": [
+        "navigator.splashscreen"
+      ]
+>>>>>>> e4d5103b580fc436214a70831fcdd631e366a3be
     }
   ],
   "plugin_metadata": {
     "cordova-plugin-whitelist": "1.3.3",
+<<<<<<< HEAD
     "cordova-plugin-camera": "4.0.3",
     "cordova-plugin-geolocation": "4.0.1"
+=======
+    "cordova-plugin-splashscreen": "5.0.2"
+>>>>>>> e4d5103b580fc436214a70831fcdd631e366a3be
   }
 }
