@@ -14,7 +14,7 @@ var app  = new Framework7({
   root: '#app', // App root element
   id: 'io.framework7.testapp', // App bundle ID
   name: 'e_sismert', // App name
-  firstNames: 'e_sismert', // App name
+  firstNames: 'Giovanni Romeors', // App name
   theme: 'auto', // Automatic theme detection
   // App root data
   data: function () {
@@ -66,15 +66,36 @@ var settingsView = app.views.create('#view-settings', {
 
 
 // Login Screen Demo
-$$('#my-login-screen .login-button').on('click', function () {
-  var username = $$('#my-login-screen [name="username"]').val();
-  var password = $$('#my-login-screen [name="password"]').val();
+$$('#my-login-screen .id_ingreso_usuario .login-button').on('click', function () {
+  //var username = $$('#my-login-screen [name="username"]').val();
+  //var password = $$('#my-login-screen [name="password"]').val();
 
   // Close login screen app.name
-  app.dialog.alert('Hello World!'+app.firstNames);
+  app.firstNames = username;
   app.loginScreen.close('#my-login-screen');
+  console.log(app.firstNames);
+
+  // Alert username and password
+  //app.dialog.alert('Bienvenido: ' + username + '<br>Password: ' + password);
+  //app.dialog.alert('Bienvenido: ' + username);
+});
+
+// Login Screen usuario
+function inicioSesion(){
+  var username = $$('#id_ingreso_usuario [name="username"]').val();
+  var password = $$('#id_ingreso_usuario [name="password"]').val();
+
+  // Close login screen app.name
+  app.firstNames = username;
+  app.loginScreen.close('#my-login-screen');
+  console.log(app.firstNames);
 
   // Alert username and password
   //app.dialog.alert('Bienvenido: ' + username + '<br>Password: ' + password);
   app.dialog.alert('Bienvenido: ' + username);
-});
+};
+
+
+function cerrarLogin(id){
+  app.loginScreen.close('#'+id);
+}

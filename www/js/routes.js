@@ -31,6 +31,13 @@ routes = [
     path: '/settings/',
     url: './pages/settings.html',
   },
+  {
+    path: '/inicio_usuario/',
+    loginScreen: {
+      url: './pages/ingreso_usuario.html',
+    },
+    
+  },
   // Page Loaders & Router
   {
     path: '/page-loader-template7/:user/:userId/:posts/:postId/',
